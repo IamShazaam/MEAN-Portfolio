@@ -1,0 +1,53 @@
+<app-nav-bar></app-nav-bar>
+<span class="line"></span>
+<div class="wrapper">
+  <div class="mainHomeBlock flex-s">
+    <aside>
+      <app-github-feed></app-github-feed>
+      <br>
+      <app-skill-languages></app-skill-languages>
+      <br>
+      <app-social-media></app-social-media>
+    </aside>
+    <div class="content">
+      <div class="h2-title h2-title-content flex-s-c">
+        <span>Registration</span>
+      </div>
+
+      <form (submit)="register($event)">
+        <!--fields-->
+        <div class="fields">
+          <div class="fieldGroup">
+            <span>First Name:</span>
+            <input type="text" name="firstName" [(ngModel)]="data.firstName">
+          </div>
+          <div class="fieldGroup">
+            <span>Last Name:</span>
+            <input type="text" name="lastName" [(ngModel)]="data.lastName">
+          </div>
+          <div class="fieldGroup" [ngClass]="{'password-too-long': isPasswordTooLong}">
+            <span>Password:</span>
+            <input type="password" name="password" [(ngModel)]="data.password" maxlength="10" (input)="checkPasswordLength()">
+          </div>
+          <div class="fieldGroup">
+            <span>Email:</span>
+            <input type="text" name="email" [(ngModel)]="data.email">
+          </div>
+          <div class="fieldGroup">
+            <span>Gender:</span>
+            <input type="text" name="gender" [(ngModel)]="data.gender">
+          </div>
+          <div class="fieldGroup">
+            <span>Carrier:</span>
+            <input type="text" name="carrier" [(ngModel)]="data.carrier">
+          </div>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+

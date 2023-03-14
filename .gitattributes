@@ -1,0 +1,2 @@
+path/to/large/file filter=lfs diff=lfs merge=lfs -text
+src/assets/Wireshark-win64-4.0.4.exe filter=lfs diff=lfs merge=lfs -text

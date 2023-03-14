@@ -1,0 +1,30 @@
+<!--forumHome-->
+<div class="forumHome blockHome">
+
+  <!--h2-title-->
+  <div class="h2-title h2-title-table flex-s-c">
+    <span>GITHUB Feed</span>
+  </div>
+
+  <!--forumBlock-content-->
+  <div class="forumBlock-content">
+
+    <!--forumBlock-->
+    <div class="forumBlock" *ngFor="let repo of repos | slice:0:5">
+      <div class="forumBlock-ava">
+        <img src="{{ repo.owner.avatar_url }}" alt="">
+      </div>
+      <div class="forumBlock-text">
+        <a href="{{ repo.html_url }}" class="forumBlock-text_link">{{ repo.name }}</a>
+        <div class="forumBlock-text_info">
+          <span class="forumBlock-text_info-nick"> <a href="{{ repo.owner.html_url }}" title="{{ repo.owner.login }}" target="_blank">{{ repo.owner.login }}</a></span> |
+          <span class="forumBlock-text_info-date">{{ repo.updated_at }}</span>
+          <span class="forumBlock-text_info-comments">{{ repo.watchers_count }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="all-button">
+      <a href="https://github.com/IamShazaam?tab=repositories" class="button" target="_blank">View All</a>
+    </div>
+  </div>
+</div>

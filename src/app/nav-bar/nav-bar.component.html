@@ -1,0 +1,86 @@
+<div class="header">
+  <div class="wrapper">
+    <header>
+      <!--topPanel-->
+      <div class="topPanel">
+        <div class="btn btn-drop" data-class="topPanel-left">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="topPanel-wrapper flex-c">
+
+          <!--topPanel-left-->
+          <div class="topPanel-left flex-c">
+            <a href="/" class="logo-mini bright"><img src="assets/logo-mini.png" alt="Logo"></a>
+            <ul class="nav">
+              <li><a href="/">Portfolio</a></li>
+              <li class="sub-menu" (click)="showMediaList = !showMediaList"><a routerLink="/mywork">My Work</a>
+                <ul *ngIf="showMediaList">
+                  <li *ngFor="let li of lis"><a>{{ li }}</a></li>
+                </ul>
+              </li>
+              <li (click)="onButtonClick()"><a routerLink="/aboutme">About Me</a></li>
+            </ul>
+          </div>
+
+          <!-- Sign In Modal -->
+          <div class="topPanel-right">
+            <ng-container *ngIf="isLoggedIn; else loggedOut">
+              <a class="sign-in" (click)="onLogout()">Logout</a>
+            </ng-container>
+            <ng-template #loggedOut>
+              <a class="sign-in open_modal">Sign In</a>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <div class="hand-animation">
+        <div class="angular-logo-bg">
+        </div>
+      </div>
+
+      <div class="sparks">
+        <div class="spark_1"></div>
+        <div class="spark_2"></div>
+        <div class="spark_3"></div>
+        <div class="spark_4 spark-big"></div>
+      </div>
+
+    </header>
+  </div>
+</div>
+
+<!-- Modal to Sign In -->
+<div id="overlay" class="overlay"></div>
+
+<div class="modal_div">
+  <span class="modal_close"></span>
+  <form>
+    <div class="modalContent">
+      <span class="modalTitle">Sign In</span>
+      <div class="enterButtons">
+        <a href="" class="facebook-button">Connect with Facebook</a>
+        <a href="" class="google-button">Connect with Google</a>
+      </div>
+      <div class="fields">
+        <div class="fieldGroup">
+          <span>Login</span>
+          <input type="text">
+        </div>
+        <div class="fieldGroup">
+          <span>Password</span>
+          <input type="password">
+        </div>
+      </div><!--fields-->
+      <div class="enter flex-s-c">
+        <div class="enterLinks">
+          <p><a href="#" class="forgot">Forgot Password?</a></p>
+          <p (click)="onSignUpClick()"><a class="sign">Sign Up</a></p>
+        </div>
+        <button class="button-blue">Sign In Now</button>
+      </div>
+    </div><!--modalContent-->
+  </form>
+</div>
