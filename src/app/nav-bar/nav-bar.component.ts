@@ -17,14 +17,13 @@ export class NavBarComponent implements OnInit {
 
   constructor(private router: Router,
               private renderer: Renderer2,
-              private authService: AuthService,
               private el: ElementRef) {}
 
   ngOnInit(): void {
 
-    this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
-      this.isLoggedIn = isLoggedIn;
-    });
+    // this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
+    //   this.isLoggedIn = isLoggedIn;
+    // });
 
     const overlay = this.el.nativeElement.querySelector('#overlay');
     const openModal = this.el.nativeElement.querySelectorAll('.open_modal');
@@ -61,7 +60,7 @@ export class NavBarComponent implements OnInit {
   }
 
   onLogout() {
-    this.authService.logout();
+    // this.authService.logout();
   }
 
 }
