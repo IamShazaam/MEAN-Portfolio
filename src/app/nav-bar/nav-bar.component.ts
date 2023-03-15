@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,18 +11,22 @@ export class NavBarComponent implements OnInit {
 
   showMediaList: boolean = false;
   lis: string[] = ['PHP', 'JavaScript', 'TypeScript', 'Games'];
-
-  isLoggedIn!: boolean;
+  email = '';
+  password = '';
+  loggedIn!: boolean;
 
   constructor(private router: Router,
               private renderer: Renderer2,
-              private el: ElementRef) {}
+              private el: ElementRef,
+              private http: HttpClient) {}
 
   ngOnInit(): void {
 
-    // this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
-    //   this.isLoggedIn = isLoggedIn;
-    // });
+    // Check for current user session
+    const currentUser = sessionStorage.getItem('currentUser');
+    if (currentUser && JSON.parse(currentUser).loggedIn) {
+      this.loggedIn = true;
+    }
 
     const overlay = this.el.nativeElement.querySelector('#overlay');
     const openModal = this.el.nativeElement.querySelectorAll('.open_modal');
@@ -59,8 +62,28 @@ export class NavBarComponent implements OnInit {
     this.router.navigate(['/register']);
   }
 
-  onLogout() {
-    // this.authService.logout();
+  login() {
+    const email = this.email;
+    const password = this.password;
+    this.http.post('http://localhost:3000/api/login', { email, password }).subscribe((res: any) => {
+      console.log(res);
+      // Set session variable for user
+      sessionStorage.setItem('currentUser', JSON.stringify(res));
+      // Set loggedIn to true
+      this.loggedIn = true;
+      // If the login was successful, redirect to the myaccount page
+      this.router.navigate(['/myaccount']);
+    }, (err: any) => {
+      console.error(err);
+      // Handle login error here
+    });
   }
+
+  logout() {
+  // Remove session variable for user
+  sessionStorage.removeItem('currentUser');
+  // Redirect to home page
+  this.router.navigate(['/']);
+}
 
 }

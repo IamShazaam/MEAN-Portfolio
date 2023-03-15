@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
+import { CvComponent } from './cv/cv.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
     RegisterComponent,
     LoginComponent,
     LogoutComponent,
-    MyaccountComponent
+    MyaccountComponent,
+    CvComponent
   ],
   imports: [
     BrowserModule,
