@@ -26,12 +26,7 @@
 
           <!-- Sign In Modal -->
           <div class="topPanel-right">
-            <ng-container *ngIf="isLoggedIn; else loggedOut">
-              <a class="sign-in" (click)="onLogout()">Logout</a>
-            </ng-container>
-            <ng-template #loggedOut>
               <a class="sign-in open_modal">Sign In</a>
-            </ng-template>
           </div>
         </div>
       </div>
@@ -66,12 +61,12 @@
       </div>
       <div class="fields">
         <div class="fieldGroup">
-          <span>Login</span>
-          <input type="text">
+          <span>Email</span>
+          <input type="email" [(ngModel)]="email" name="email" required>
         </div>
         <div class="fieldGroup">
           <span>Password</span>
-          <input type="password">
+          <input type="password" [(ngModel)]="password" name="password" required>
         </div>
       </div><!--fields-->
       <div class="enter flex-s-c">
@@ -79,7 +74,7 @@
           <p><a href="#" class="forgot">Forgot Password?</a></p>
           <p (click)="onSignUpClick()"><a class="sign">Sign Up</a></p>
         </div>
-        <button class="button-blue">Sign In Now</button>
+        <button class="button-blue" (click)="login()">Sign In Now</button>
       </div>
     </div><!--modalContent-->
   </form>
